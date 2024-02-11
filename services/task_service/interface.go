@@ -1,15 +1,11 @@
 package taskservice
 
-type Task struct {
-	Id          string `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-}
+import "github.com/sorrawichYooboon/golang-error-handling-and-unit-test/models"
 
 type ITaskService interface {
-	GetTasks() ([]Task, error)
-	CreateTask(task Task) (Task, error)
-	GetTaskById(id string) (Task, error)
-	UpdateTaskById(id string, task Task) (Task, error)
+	GetTasks() ([]models.Task, error)
+	CreateTask(task models.Task) (models.Task, error)
+	GetTaskById(id string) (models.Task, error)
+	UpdateTaskById(id string, task models.Task) (models.Task, error)
 	DeleteTaskById(id string) error
 }

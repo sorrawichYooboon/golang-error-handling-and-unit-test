@@ -18,10 +18,6 @@ var ErrorCodeToHTTPStatus = map[string]int{
 	constants.ERROR_NOT_IMPLEMENTED:        501,
 }
 
-type stackTracer interface {
-	StackTrace() errors.StackTrace
-}
-
 type RedisError struct {
 	error
 }
