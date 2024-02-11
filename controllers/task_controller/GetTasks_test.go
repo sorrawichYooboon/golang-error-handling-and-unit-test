@@ -22,14 +22,11 @@ func TestTaskController_GetTasks(t *testing.T) {
 	}
 
 	tests := []struct {
-		name          string
-		mockPayload   interface{}
-		wantErrorCode string
+		name        string
+		mockPayload interface{}
 
 		wantServiceOrRepoCallWithAndResponse func()
 		wantServiceOrRepoCallTimes           map[string]map[string]int
-		wantServiceOrRepoError               error
-		wantMainServiceError                 error
 		wantStatusCode                       int
 		wantMainServiceResponse              interface{}
 	}{
@@ -64,6 +61,13 @@ func TestTaskController_GetTasks(t *testing.T) {
 				},
 			},
 			wantStatusCode: http.StatusOK,
+			wantMainServiceResponse: []models.Task{
+				{
+					Id:          "1",
+					Title:       "task 1",
+					Description: "task 1 description",
+				},
+			},
 		},
 	}
 
@@ -88,6 +92,12 @@ func TestTaskController_GetTasks(t *testing.T) {
 
 			if test.wantStatusCode != 0 {
 				assert.Equal(t, test.wantStatusCode, response.Code)
+			}
+
+			if test.wantMainServiceResponse != nil {
+				var gotResponse []models.Task
+				internal.UnmarshalJSONData(response.Body.Bytes(), &gotResponse)
+				assert.Equal(t, test.wantMainServiceResponse, gotResponse)
 			}
 
 			for serviceName, serviceCallTimes := range test.wantServiceOrRepoCallTimes {

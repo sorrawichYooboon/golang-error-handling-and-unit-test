@@ -16,6 +16,8 @@ go get -u github.com/gin-gonic/gin
 
 > Testify is a toolkit with common assertions and mocks that plays nicely with the standard library.
 
+> not use `"github.com/go-playground/assert/v2"` because it not compare deep equal
+
 ```bash
 go get -u github.com/stretchr/testify/mock
 ```

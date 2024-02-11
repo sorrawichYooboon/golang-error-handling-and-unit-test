@@ -16,6 +16,13 @@ func MarshalJSONData(req interface{}) []byte {
 	return jsonData
 }
 
+func UnmarshalJSONData(req []byte, target interface{}) {
+	err := json.Unmarshal(req, target)
+	if err != nil {
+		panic(errors.New("cannot unmarshal json data"))
+	}
+}
+
 func CreateHTTPRequest(method, url string, body []byte) *http.Request {
 	request, err := http.NewRequest(method, url, bytes.NewBuffer(body))
 	if err != nil {
