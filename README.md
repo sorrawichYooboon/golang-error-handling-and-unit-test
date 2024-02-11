@@ -4,6 +4,16 @@ Test is in producer folder
 
 ## Setup
 
+```bash
+go mod tidy
+```
+
+> then run go main to start the server
+
+```bash
+go run main.go
+```
+
 ### Install Gin
 
 > Fiber is an Express inspired web framework written in Go
