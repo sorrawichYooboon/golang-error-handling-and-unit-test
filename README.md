@@ -119,3 +119,58 @@ go test ./...
 ```bash
 go test -cover ./...
 ```
+
+---
+
+# Error Handling in Go Application
+
+This repository demonstrates a common approach to error handling in a Go application using the `github.com/pkg/errors` package. The application follows best practices for handling and logging errors, providing clear error messages and stack traces for debugging purposes.
+
+## Error Wrapping
+
+The `ce` package provides functions for wrapping errors with additional context and handling specific error types. This allows for more informative error messages and consistent error handling across the application.
+
+### Error Types
+
+The following error types are defined in the `ce` package:
+
+- `RedisError`: Represents errors related to Redis operations.
+- `InvalidRequestError`: Indicates an invalid request error, such as missing or malformed request parameters.
+- `InvalidFormatError`: Denotes errors caused by invalid data formats.
+- `InternalError`: Represents generic internal server errors.
+
+## Error Responses
+
+The `ce` package also includes functions for generating and handling error responses. This ensures that error responses returned by the API are consistent and informative.
+
+### Generating Error Responses
+
+The `ErrorResponseJson` function generates JSON error responses based on the error type. It maps each error type to an appropriate HTTP status code and error message.
+
+### Handling Error Responses
+
+The `HandleErrorResponse` function is used to handle error responses in API handlers. It logs the error message and stack trace for debugging purposes.
+
+## Logging
+
+The `ce` package includes functions for logging error messages and stack traces to aid in debugging.
+
+### Logging Error Stack Traces
+
+The `LogErrorStackTrace` function logs the stack trace of an error, if available.
+
+### Logging Cause Error Messages
+
+The `LogCauseErrorMessages` function logs the error message and its causes.
+
+### Logging Error Stack Traces and Endpoints
+
+The `GetErrorStackTraceAndEndpoint` function logs the stack trace of an error along with the endpoint and HTTP method where the error occurred.
+
+## Usage
+
+To use the error handling functionality in your application:
+
+1.  Import the `ce` package.
+2.  Wrap errors using the appropriate error type functions provided by the `ce` package.
+3.  Handle error responses in API handlers using the `HandleErrorResponse` function.
