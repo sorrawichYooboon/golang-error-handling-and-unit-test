@@ -1,7 +1,5 @@
 # Error handling and Unit testing in Golang
 
-Test is in producer folder
-
 ## Setup
 
 ```bash
