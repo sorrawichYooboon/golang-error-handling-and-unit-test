@@ -84,5 +84,5 @@ func (tc *TaskController) DeleteTaskById(c *gin.Context) {
 		return
 	}
 
-	c.JSON(204, "Deleted successfully!")
+	c.JSON(204, "")
 }
