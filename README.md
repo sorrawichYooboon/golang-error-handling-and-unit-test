@@ -1,5 +1,14 @@
 # Error handling and Unit testing in Golang
 
+## About this Project
+
+This project is built using a <b>Layered (clean) architecture</b>, which emphasizes a clear separation of concerns between different layers of the application. Each layer in the architecture has its own responsibility, making the codebase more maintainable, scalable, and testable.
+
+- <b>Controllers</b> handle incoming requests and process them by invoking the relevant services.
+- <b>Services</b> contain business logic and interact with repositories for data access.
+- <b>Repositories</b> abstract the data source and provide a clean interface for data operations, which makes the system flexible to switch between databases or external services.
+- <b>Models</b> define the core domain entities of the application.
+
 ## Setup
 
 ```bash
