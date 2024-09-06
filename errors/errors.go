@@ -18,76 +18,15 @@ var ErrorCodeToHTTPStatus = map[string]int{
 	constants.ERROR_NOT_IMPLEMENTED:        501,
 }
 
-type RedisError struct {
+type BaseError struct {
 	error
 }
 
-func ErrorRedis(err error) error {
-	return &RedisError{err}
-}
-
-func (e *RedisError) Error() string {
+func (e *BaseError) Error() string {
 	return e.error.Error()
 }
 
-func (e *RedisError) StackTrace() errors.StackTrace {
-	if sterr, ok := errors.Cause(e.error).(stackTracer); ok {
-		return sterr.StackTrace()
-	}
-	return nil
-}
-
-type InvalidFormatError struct {
-	error
-}
-
-func ErrorInvalidFormat(err error) error {
-	return &InvalidFormatError{err}
-}
-
-func (e *InvalidFormatError) Error() string {
-	return e.error.Error()
-}
-
-func (e *InvalidFormatError) StackTrace() errors.StackTrace {
-	if sterr, ok := errors.Cause(e.error).(stackTracer); ok {
-		return sterr.StackTrace()
-	}
-	return nil
-}
-
-type InternalError struct {
-	error
-}
-
-func ErrorInternal(err error) error {
-	return &InternalError{err}
-}
-
-func (e *InternalError) Error() string {
-	return e.error.Error()
-}
-
-func (e *InternalError) StackTrace() errors.StackTrace {
-	if sterr, ok := errors.Cause(e.error).(stackTracer); ok {
-		return sterr.StackTrace()
-	}
-	return nil
-}
-
-type InvalidRequestError struct {
-	error
-}
-
-func ErrorInvalidRequest(err error) error {
-	return &InvalidRequestError{err}
-}
-
-func (e *InvalidRequestError) Error() string {
-	return e.error.Error()
-}
-
-func (e *InvalidRequestError) StackTrace() errors.StackTrace {
+func (e *BaseError) StackTrace() errors.StackTrace {
 	if sterr, ok := errors.Cause(e.error).(stackTracer); ok {
 		return sterr.StackTrace()
 	}
